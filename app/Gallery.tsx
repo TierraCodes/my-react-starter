@@ -1,15 +1,13 @@
-'use client'
+"use client"
 import {useState} from 'react';
-import Images from './page';
-import {AppProps} from 'next/app';
 
 
-export default function Gallery() {
+
+export default function Gallery(pics) {
     const [count, currentImage] = useState(0);
-    const hasNext = count < Images.length-1;
-    const hasPrevious = count > Images.length-1;
-
-    const image = Images[count];
+    const hasNext = count < pics.length-1;
+    const hasPrevious = count > pics.length-1;
+    const image = pics(currentImage);
     
     function handleUpClick() {
         if(hasNext){
@@ -22,7 +20,7 @@ export default function Gallery() {
         if(hasPrevious){
             currentImage(count-1);
         } else {
-            currentImage(Images.length-1)
+            currentImage(pics.length-1)
         }
     }
 
@@ -30,27 +28,27 @@ export default function Gallery() {
         <>
             <h1>Image Gallery</h1>
             <p>
-                <backButton count={count} onClick={handleDownClick}/>
-                <imageDiv image = {image}/>
-                <nextButton count={count} onClick={handleUpClick}/>
+                <BackButton count={count} onClick={handleDownClick}/>
+                <ImageDiv image = {image}/>
+                <NextButton count={count} onClick={handleUpClick}/>
             </p>
         </>
     );
 }
 
-function nextButton({onClick}: AppProps){
+function NextButton({onClick}){
     return(
         <button onClick={onClick}>Next</button>
     );
 }
 
-function backButton({onClick}: AppProps){
+function BackButton({onClick}){
     return(
         <button onClick={onClick}>Back</button>
     );
 }
 
-function imageDiv({image}: AppProps){
+function ImageDiv({image}){
     return(
         <img src={image.link} />
     );

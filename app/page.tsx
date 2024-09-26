@@ -1,4 +1,15 @@
 import Image from "next/image";
+import Gallery from "./Gallery";
+
+function pictures {
+  <ul>
+    <li><a href="public\pictures\bear.png"></a></li>
+    <li><a href="public\pictures\cat.jpg"></a></li>
+    <li><a href="public\pictures\dog.png"></a></li>
+    <li><a href="public\pictures\lizard.jpg"></a></li>
+  </ul>
+}
+Gallery(pictures);
 
 export default function Home() {
   return (
